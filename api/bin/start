@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+
+const app = require("../lib/app");
+const http = require("http");
+const socketio = require("socket.io");
+const level = require("level");
+const db = level(__dirname + "/../db");
+const server = http.createServer(app);
+const io = socketio(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+    credentials: true,
+  },
+});
+io.on("connection", (socket) => {
+  socket.on("join", ({ channel, user }, callback) => {
+    if (user) console.log(`${user.firstname} has joined the application.`);
+    // else if (!user) {
+    //   callback({ error: "User is not connected." });
+    // }
+    socket.join(channel.id);
+    io.to(channel.id).emit("channelData", {
+      channel: channel.id,
+      users: channel.members,
+    });
+  });
+  socket.on("sendMessage", (message) => {
+    io.to(message.channelId).emit("message", message);
+  });
+  socket.on("sendMessage", (message) => {
+    io.emit("notification", message);
+  });
+  socket.on("disconnect", () => {
+    console.log("user has left.");
+  });
+});
+const config = {
+  port: 3001,
+};
+
+server.listen(config.port, () => {
+  console.log(`Chat is waiting for you at http://localhost:${config.port}`);
+});
