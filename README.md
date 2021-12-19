@@ -20,4 +20,4 @@
   
   `cd bin`
   
-  `node start
+  `node start`
