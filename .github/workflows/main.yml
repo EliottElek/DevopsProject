@@ -13,6 +13,9 @@ jobs:
   # CI part
   test:
     runs-on: ubuntu-latests
+    defaults:
+     run:
+       working-directory: /
      # Service containers to run with `runner-job`
     strategy:
       matrix:
