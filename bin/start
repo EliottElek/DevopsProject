@@ -40,5 +40,5 @@ const config = {
 };
 
 server.listen(config.port, () => {
-  console.log(`Chat is waiting for you at http://localhost:${config.port}`);
+  console.log(`Server is running on the port you specified !! ✅`);
 });
