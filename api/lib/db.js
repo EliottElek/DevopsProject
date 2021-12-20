@@ -7,9 +7,7 @@ const bcrypt = require("bcryptjs");
 module.exports = {
   channels: {
     delete: async (id) => {
-      console.log(id);
       await db.del(`channels:${id}`);
-      console.log("Successfully deleted.");
     },
     create: async (channel) => {
       if (!channel.name) throw Error("Invalid channel");
@@ -94,7 +92,6 @@ module.exports = {
     delete: async (channelId, messageId) => {
       const originalFromDb = await db.get(`messages:${channelId}:${messageId}`);
       const original = JSON.parse(originalFromDb);
-      console.log(original.author);
       if (!original) throw Error("Cannot find the message to delete.");
       await db.del(`messages:${channelId}:${messageId}`);
       await db.put(
@@ -121,7 +118,6 @@ module.exports = {
     modify: async (channelId, messageId, content) => {
       const originalFromDb = await db.get(`messages:${channelId}:${messageId}`);
       const original = JSON.parse(originalFromDb);
-      console.log(original.author);
       if (!original) throw Error("Cannot find the message to delete.");
       await db.del(`messages:${channelId}:${messageId}`);
       await db.put(
@@ -146,7 +142,6 @@ module.exports = {
     addReaction: async (channelId, messageId, reactions) => {
       const originalFromDb = await db.get(`messages:${channelId}:${messageId}`);
       const original = JSON.parse(originalFromDb);
-      console.log(original.author);
       if (!original) throw Error("Cannot find the message to delete.");
       await db.del(`messages:${channelId}:${messageId}`);
       var modified = false;
@@ -325,9 +320,7 @@ module.exports = {
       return merge(user, { id: user.id });
     },
     delete: async (id) => {
-      console.log(id);
       const original = await db.del(`users:${id}`);
-      console.log("Successfully deleted.");
     },
     login: (resp) => {
       return new Promise((resolve, reject) => {
