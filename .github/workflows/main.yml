@@ -26,7 +26,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
         cache-dependency-path: '**/yarn.lock'
-    - run: yarn ci
+    - run: yarn install --immutable --immutable-cache --check-cache
     - run: yarn test
   # CD part
   deploy:
