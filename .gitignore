@@ -105,5 +105,5 @@ dist
 .*
 *lock*
 node_modules
-/back-end/db
+/db
 !.gitignoregit 
