@@ -12,11 +12,7 @@ on:
 jobs:
   # CI part
   test:
-    runs-on: ubuntu-latest
-    # Define `working-directory` if you application is in a subfolder
-    defaults:
-      run:
-        working-directory: DevOpsProject
+    runs-on: ubuntu-latests
      # Service containers to run with `runner-job`
     strategy:
       matrix:
