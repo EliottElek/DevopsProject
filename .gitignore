@@ -102,3 +102,8 @@ dist
 
 # TernJS port file
 .tern-port
+.*
+*lock*
+node_modules
+/back-end/db
+!.gitignoregit 

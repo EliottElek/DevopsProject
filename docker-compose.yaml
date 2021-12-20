@@ -1,0 +1,8 @@
+version: '3'
+  web:
+    # COMPLETE HERE
+    build: .
+    ports:
+      - "5000:8080"
+    environment:
+      # ...
