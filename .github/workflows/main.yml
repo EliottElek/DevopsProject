@@ -44,4 +44,4 @@ jobs:
           heroku_api_key: "27fd25a8-48ca-4508-9eb0-6c984a84aa4e"
           heroku_app_name: "chateex" # Must be unique in Heroku
           heroku_email: "eliott.morcillo@gmail.com" # Heroku account email
-          appdir: userapi # Define appdir if you application is in a subfolder
+          appdir: api # Define appdir if you application is in a subfolder
