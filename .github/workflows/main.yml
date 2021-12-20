@@ -16,7 +16,7 @@ jobs:
     # Define `working-directory` if you application is in a subfolder
     defaults:
       run:
-        working-directory: api
+        working-directory: chateex
      # Service containers to run with `runner-job`
     strategy:
       matrix:
