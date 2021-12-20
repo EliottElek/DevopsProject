@@ -28,10 +28,10 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-        cache-dependency-path: '**/package-lock.json'
-    - run: npm ci
-    - run: npm test
+        cache: 'yarn'
+        cache-dependency-path: '**/yarn.lock'
+    - run: yarn ci
+    - run: yarn test
   # CD part
   deploy:
     needs: test # Requires CI part to be succesfully completed
