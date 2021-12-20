@@ -21,3 +21,14 @@
   `cd bin`
   
   `node start`
+
+
+ 7. Container orcherstration
+ 
+ ![image](https://user-images.githubusercontent.com/64375473/146779600-a15f622f-3465-4506-88e2-f0d6cdbdfa9e.png)
+![image](https://user-images.githubusercontent.com/64375473/146781191-aad85349-302e-4fe3-948c-2ef4a2e4613e.png)
+![image](https://user-images.githubusercontent.com/64375473/146781294-ff788e53-d6fd-40d7-9f22-4b8139b55fa5.png)
+![image](https://user-images.githubusercontent.com/64375473/146781336-8c0852e5-1bb8-49cd-8def-7cfb184c3ec1.png)
+![image](https://user-images.githubusercontent.com/64375473/146781752-918cb468-2cbb-454a-8a35-d04ab1a00871.png)
+![image](https://user-images.githubusercontent.com/64375473/146781777-922d8be0-8841-41d5-bd9b-37bc5684ecec.png)
+![image](https://user-images.githubusercontent.com/64375473/146781877-fb532e61-f2a0-49e1-9cf0-89b6468c49d3.png)
