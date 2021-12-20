@@ -1,8 +1,10 @@
-version: '3'
+version: '2'
+services:
   web:
-    # COMPLETE HERE
-    build: .
+    depends_on:
+     - db
+    build: '.'
     ports:
-      - "5000:8080"
-    environment:
-      # ...
+     - "5000:3001"
+    command: >
+      yarn start
