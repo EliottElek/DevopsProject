@@ -13,10 +13,6 @@ jobs:
   # CI part
   test:
     runs-on: ubuntu-latest
-    # Define `working-directory` if you application is in a subfolder
-    defaults:
-      run:
-        working-directory: api
      # Service containers to run with `runner-job`
     strategy:
       matrix:
@@ -30,7 +26,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
         cache-dependency-path: '**/yarn.lock'
-    - run: yarn ci
+    - run: yarn install --immutable --immutable-cache --check-cache
     - run: yarn test
   # CD part
   deploy:
@@ -44,4 +40,3 @@ jobs:
           heroku_api_key: 27fd25a8-48ca-4508-9eb0-6c984a84aa4e
           heroku_app_name: "chateex" # Must be unique in Heroku
           heroku_email: "eliott.morcillo@gmail.com" # Heroku account email
-          appdir: api # Define appdir if you application is in a subfolder
