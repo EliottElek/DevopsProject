@@ -27,6 +27,7 @@
  ![image](https://user-images.githubusercontent.com/64375473/146963143-fa66c9bb-ca3b-4a64-8f0f-b6ac5340aefc.png)
  start kubernetes
 ![image](https://user-images.githubusercontent.com/64375473/146964465-581f2752-3ac4-47fe-941c-7a5483c02a70.png)
+![image](https://user-images.githubusercontent.com/64375473/146976579-93495256-bfe0-4190-b30e-807ba2f433f0.png)
 
  ![image](https://user-images.githubusercontent.com/64375473/146779600-a15f622f-3465-4506-88e2-f0d6cdbdfa9e.png)
 ![image](https://user-images.githubusercontent.com/64375473/146781191-aad85349-302e-4fe3-948c-2ef4a2e4613e.png)
