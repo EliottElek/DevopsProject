@@ -14,6 +14,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
      # Service containers to run with `runner-job`
+    defaults:
+     run:
+      working-directory: api
     strategy:
       matrix:
         node-version: [16.x]
@@ -37,6 +40,8 @@ jobs:
       # Read instructions how to configure this action: https://github.com/marketplace/actions/deploy-to-heroku#getting-started
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_api_key: ${{ secrets.HEROKU_A }}
           heroku_app_name: "chateex" # Must be unique in Heroku
           heroku_email: ${{ secrets.HEROKU_EMAIL }} # Heroku account email
+          appdir: api # Define appdir if you application is in a subfolder
+
