@@ -15,7 +15,6 @@
     "jsonwebtoken": "^8.5.1",
     "jwks-rsa": "^2.0.5",
     "level": "^7.0.1",
-    "microtime": "^3.0.0",
     "mixme": "^0.5.4",
     "random-firstname": "^1.0.1",
     "should": "^13.2.3",
