@@ -30,7 +30,7 @@ jobs:
         cache: 'npm'
         cache-dependency-path: '**/package-lock.json'
     - run: npm ci
-    - run: npm start
+    - run: npm test
   # CD part
   deploy:
     needs: test # Requires CI part to be succesfully completed
