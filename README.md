@@ -23,7 +23,6 @@
   `node start`
 
 CICD Heroku
-![image](https://user-images.githubusercontent.com/64375473/147000594-d9cc3ef5-468f-4515-bca5-4b3ad1f4b7d8.png)
 
  7. Container orcherstration
  ![image](https://user-images.githubusercontent.com/64375473/146963143-fa66c9bb-ca3b-4a64-8f0f-b6ac5340aefc.png)
