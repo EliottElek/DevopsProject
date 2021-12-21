@@ -27,10 +27,10 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
-        cache-dependency-path: '**/yarn.lock'
-    - run: yarn install --immutable --immutable-cache --check-cache
-    - run: yarn test
+        cache: 'npm'
+        cache-dependency-path: '**/package-lock.json'
+    - run: npm ci
+    - run: npm start
   # CD part
   deploy:
     needs: test # Requires CI part to be succesfully completed
@@ -40,7 +40,7 @@ jobs:
       # Read instructions how to configure this action: https://github.com/marketplace/actions/deploy-to-heroku#getting-started
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
-          heroku_api_key: ${{ secrets.HEROKU_A }}
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: "chateex" # Must be unique in Heroku
           heroku_email: ${{ secrets.HEROKU_EMAIL }} # Heroku account email
           appdir: api # Define appdir if you application is in a subfolder
