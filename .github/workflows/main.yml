@@ -43,4 +43,5 @@ jobs:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: "chateex" # Must be unique in Heroku
           heroku_email: ${{ secrets.HEROKU_EMAIL }} # Heroku account email
+          appdir: api # Define appdir if you application is in a subfolder
 
