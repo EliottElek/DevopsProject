@@ -37,6 +37,6 @@ jobs:
       # Read instructions how to configure this action: https://github.com/marketplace/actions/deploy-to-heroku#getting-started
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
-          heroku_api_key: 27fd25a8-48ca-4508-9eb0-6c984a84aa4e
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: "chateex" # Must be unique in Heroku
-          heroku_email: "eliott.morcillo@gmail.com" # Heroku account email
+          heroku_email: ${{ secrets.HEROKU_EMAIL }} # Heroku account email

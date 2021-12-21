@@ -1,10 +1,5 @@
-version: '2'
+version: '3'
 services:
   web:
-    depends_on:
-     - db
-    build: '.'
-    ports:
-     - "5000:3001"
-    command: >
-      yarn start
+    image : docker.io/eliottelekkk/chateex:latest
+    
