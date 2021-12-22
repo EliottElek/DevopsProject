@@ -178,6 +178,10 @@ This is what we get when we type the command `kubectl get services` :
 
 ![image](https://user-images.githubusercontent.com/64375473/147014534-939ebb66-2bc6-4089-9af2-1a8ec8884c1b.png)
 
+This is what we get when we type the command `kubectl get deployments` :
+
+![image](https://user-images.githubusercontent.com/64375473/147014970-521c91e1-d263-49ba-96f4-478162802849.png)
+
 And when we try to list our pods with `kubectl get pods`, this is what we get : 
 
 ![image](https://user-images.githubusercontent.com/64375473/147014584-b5a17977-9bb8-4a5b-818e-57333fe4395d.png)
