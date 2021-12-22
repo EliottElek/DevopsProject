@@ -3,7 +3,6 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 var bodyParser = require("body-parser");
-
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(bodyParser.json({ limit: "50mb" }));
 
@@ -15,9 +14,8 @@ const authenticate = authenticator({
 
 app.use(require("body-parser").json());
 app.use(cors());
-
 app.get("/", (req, res) => {
-  res.send(["app-side chat application."].join(""));
+  res.send(["<h1>Welcome to the server-side of Chateex <span>✅</span></h1><h4>Seems to be working just fine.</h4>"].join(""));
 });
 
 // Channels
