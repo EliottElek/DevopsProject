@@ -100,6 +100,10 @@ This one is the one that interestes us. Then we login to docker hub :
 
 ![image](https://user-images.githubusercontent.com/64375473/147009781-cf45c789-a130-45a9-87f3-f6181bfd8b9d.png)
 
+NExt we tag our container to our account with `docker tag chateex eliottelekkk/chateex` :
+
+![image](https://user-images.githubusercontent.com/64375473/147072714-3e392a81-209d-4fce-aaa7-9b2d095aa379.png)
+
 Then we push the image on docker hub (says "layer already exists" because we retyped the command for the purpose): 
 
 ![image](https://user-images.githubusercontent.com/64375473/147010123-20f99cbf-d063-42f9-87ba-00225b55c0d5.png)
