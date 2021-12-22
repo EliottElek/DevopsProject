@@ -187,3 +187,9 @@ And when we try to list our pods with `kubectl get pods`, this is what we get :
 ![image](https://user-images.githubusercontent.com/64375473/147014584-b5a17977-9bb8-4a5b-818e-57333fe4395d.png)
 
 We can see our 5 replicas running. 
+
+If we change the number of replicas from 5 to 15 and re-apply changes with `kubectl apply -f deployment.yaml`, and then list the pods with `kubectl get pods` : 
+
+![image](https://user-images.githubusercontent.com/64375473/147068943-0fe7db01-c30f-4aba-8fb8-ce7bda35edfb.png)
+
+We can see our 15 replicas running. 
