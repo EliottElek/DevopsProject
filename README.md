@@ -95,6 +95,13 @@ Next, we can build our docker container with the command `docker build -t chatee
 
 ![image](https://user-images.githubusercontent.com/64375473/147075964-dbabab04-ccc6-4b83-891f-5deba242cb7b.png)
 
+Then we can run the image to see if it works with `docker run -p 3222:8080 chateex` :
+
+![image](https://user-images.githubusercontent.com/64375473/147083744-8503de64-c641-4da6-8a41-2693f70690f5.png)
+
+![image](https://user-images.githubusercontent.com/64375473/147083880-323ac3b2-309f-4bee-af99-54bb4b9883fd.png)
+
+
 Then, we registered on docker hub. We only created one account, which is under the username "eliottelekkk".
 
 First we list our docker images with `docker images` :
