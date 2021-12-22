@@ -90,6 +90,11 @@ COPY . .
 EXPOSE 3000
 CMD [ "npm", "start"]
   ```
+  
+Next, we can build our docker container with the command `docker build -t chateex .` : 
+
+![image](https://user-images.githubusercontent.com/64375473/147075964-dbabab04-ccc6-4b83-891f-5deba242cb7b.png)
+
 Then, we registered on docker hub. We only created one account, which is under the username "eliottelekkk".
 
 First we list our docker images with `docker images` :
