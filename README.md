@@ -82,13 +82,14 @@ iac/
   To build a Docker image, we first started by creating a `image` folder in the root of our projet. inside of it, we created a `Dockerfile`, which is :
   
   ```
-  FROM node:12
+FROM node:12
 WORKDIR /usr/src/app
 COPY package*.json ./
+RUN npm cache clean --force
 RUN npm install
 COPY . .
-EXPOSE 3000
-CMD [ "npm", "start"]
+EXPOSE 8080
+CMD [ "npm", "start" ]
   ```
   
 Next, we can build our docker container with the command `docker build -t chateex .` : 
@@ -136,6 +137,8 @@ version: '3'
 services:
   web:
     image : docker.io/eliottelekkk/chateex:latest
+    ports:
+      - "8080:8080"
 ```
 
 To run, place yourself in the `/image` folder and run `docker-compose up` : 
