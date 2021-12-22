@@ -125,3 +125,61 @@ services:
 To run, place yourself in the `/image` folder and run `docker-compose up` : 
 
 ![image](https://user-images.githubusercontent.com/64375473/147011145-ffbd783e-ff90-4cff-af95-87804598b50b.png)
+
+## 4. Container orcherstration with Kubernetes
+
+We first started by installing minikube. Then we created a `k8s` folder in which whe created a `deployment.yaml` file : 
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: chateex-service
+spec:
+  selector:
+    app: chateex
+  ports:
+  - protocol: "TCP"
+    name : http
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chateex-app
+spec:
+  selector:
+    matchLabels:
+      app: chateex
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: chateex
+    spec:
+      containers:
+      - name: chateex
+        image: docker.io/eliottelekkk/chateex:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000
+```
+
+With this folder created, we can apply it with `kubectl apply -f deployment.yaml` :
+
+![image](https://user-images.githubusercontent.com/64375473/147014349-f9fe92bd-ffa5-415d-a03d-8a4dcf8b027d.png)
+
+(Should say service created and deployement created when running this command for the first time.)
+
+This is what we get when we type the command `kubectl get services` :
+
+![image](https://user-images.githubusercontent.com/64375473/147014534-939ebb66-2bc6-4089-9af2-1a8ec8884c1b.png)
+
+And when we try to list our pods with `kubectl get pods`, this is what we get : 
+
+![image](https://user-images.githubusercontent.com/64375473/147014584-b5a17977-9bb8-4a5b-818e-57333fe4395d.png)
+
+We can see our 5 replicas running. 
