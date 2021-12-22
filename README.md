@@ -1,44 +1,189 @@
 # DevopsProject
 
-# Usage
-  
-  This is the back-end of our chat application. 
-  
-  Start by cloning this project. 
-  
-  `git clone https://github.com/EliottElek/DevopsProject.git`
-  
-  Navigate to `DevopsProject/api` : 
-  
-  `cd DevopsProject/api`, and install packages : 
-  `npm i`
-  
-  run tests : `npm run test` 
-  run the api : `nom run start` 
-  
-  or 
-  
-  `cd bin`
-  
-  `node start`
+## 1. Create a web application
 
-CICD Heroku
+We decided not to go on with the small API provided, but rather to go and deploy the backend we used for our webtech project. This backend api consists of multiple methods and functions, but also 19 unit tests. 
 
- 7. Container orcherstration
- ![image](https://user-images.githubusercontent.com/64375473/146963143-fa66c9bb-ca3b-4a64-8f0f-b6ac5340aefc.png)
- start kubernetes
-![image](https://user-images.githubusercontent.com/64375473/146964465-581f2752-3ac4-47fe-941c-7a5483c02a70.png)
-![image](https://user-images.githubusercontent.com/64375473/146976579-93495256-bfe0-4190-b30e-807ba2f433f0.png)
-![image](https://user-images.githubusercontent.com/64375473/146976792-5b66ae7b-e7ef-4b8a-b09a-2b713b9dbbf3.png)
-![image](https://user-images.githubusercontent.com/64375473/146981578-eef830dc-f7a3-4db4-b5f9-3bc7f4b3b1df.png)
-![image](https://user-images.githubusercontent.com/64375473/146981655-0f52f917-d719-4b27-9612-b46795af4941.png)
-![image](https://user-images.githubusercontent.com/64375473/146990643-b3215cfb-db17-46d0-840c-8a86165c6f6f.png)
+![image](https://user-images.githubusercontent.com/64375473/147007818-4e8ff71b-2288-4ce7-aae7-bca43a7150a1.png)
 
- ![image](https://user-images.githubusercontent.com/64375473/146779600-a15f622f-3465-4506-88e2-f0d6cdbdfa9e.png)
-![image](https://user-images.githubusercontent.com/64375473/146781191-aad85349-302e-4fe3-948c-2ef4a2e4613e.png)
-![image](https://user-images.githubusercontent.com/64375473/146781294-ff788e53-d6fd-40d7-9f22-4b8139b55fa5.png)
-![image](https://user-images.githubusercontent.com/64375473/146781336-8c0852e5-1bb8-49cd-8def-7cfb184c3ec1.png)
-![image](https://user-images.githubusercontent.com/64375473/146781752-918cb468-2cbb-454a-8a35-d04ab1a00871.png)
-![image](https://user-images.githubusercontent.com/64375473/146781777-922d8be0-8841-41d5-bd9b-37bc5684ecec.png)
-![image](https://user-images.githubusercontent.com/64375473/146781877-fb532e61-f2a0-49e1-9cf0-89b6468c49d3.png)
+  
+## 2. CI/CD Pipeline
 
+For the CI/CD pipeline, we decided to use github actions along with cloud deployment plateform Heroku. We first started by creating a `.github` folder inside which we created a `main.yml` file, the following : 
+
+```
+name: Main CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # CI part
+  test:
+    runs-on: ubuntu-latest
+     # Service containers to run with `runner-job`
+    defaults:
+     run:
+      working-directory: api
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 16.13.1
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: '**/package-lock.json'
+    - run: npm ci
+    - run: npm test
+  # CD part
+  deploy:
+    needs: test # Requires CI part to be succesfully completed
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      # Read instructions how to configure this action: https://github.com/marketplace/actions/deploy-to-heroku#getting-started
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: "chateex" # Must be unique in Heroku
+          heroku_email: ${{ secrets.HEROKU_EMAIL }} # Heroku account email
+          appdir: api # Define appdir if you application is in a subfolder
+```
+As you can see in the following picture, the CI/CD pipeline is working correctly.
+
+![image](https://user-images.githubusercontent.com/64375473/147008475-7464c6c8-4df8-418a-8462-020b0ff4025d.png)
+
+## 3. Configure and provision a virtual environment and run your application using the IaC approach
+
+We started by restructuring our project. in one folder `api` we have our application. Then we created a `iac` folder which is structured like the following : 
+
+```
+iac/
+  Vagrantfile
+  playbooks/
+    roles/
+     gitlab/
+      healthchecks/
+       tasks/
+        main.yml
+      install/
+       tasks/
+        main.yml
+```
+## 4. Build Docker image of the application
+
+  To build a Docker image, we first started by creating a `image` folder in the root of our projet. inside of it, we created a `Dockerfile`, which is :
+  
+  ```
+  FROM node:12
+WORKDIR /usr/src/app
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 3000
+CMD [ "npm", "start"]
+  ```
+Then, we registered on docker hub. We only created one account, which is under the username "eliottelekkk".
+
+First we list our docker images with `docker images` :
+
+`chateex                              latest                                                  9787b1128b10   36 hours ago   946MB`
+
+This one is the one that interestes us. Then we login to docker hub : 
+
+![image](https://user-images.githubusercontent.com/64375473/147009781-cf45c789-a130-45a9-87f3-f6181bfd8b9d.png)
+
+Then we push the image on docker hub (says "layer already exists" because we retyped the command for the purpose): 
+
+![image](https://user-images.githubusercontent.com/64375473/147010123-20f99cbf-d063-42f9-87ba-00225b55c0d5.png)
+
+We can pull the image to see : 
+
+![image](https://user-images.githubusercontent.com/64375473/147010305-336f7554-60dd-4e62-adaa-502c361af3d2.png)
+![image](https://user-images.githubusercontent.com/64375473/147010337-71e6058d-808a-490b-839b-43160588c5e0.png)
+
+We also added a `.dockerignore` to our project.
+
+## 5. Create a `docker-compose.yaml` file
+
+We create a `docker-compose.yaml` in the `/image` folder, which is the following : 
+
+```
+version: '3'
+services:
+  web:
+    image : docker.io/eliottelekkk/chateex:latest
+```
+
+To run, place yourself in the `/image` folder and run `docker-compose up` : 
+
+![image](https://user-images.githubusercontent.com/64375473/147011145-ffbd783e-ff90-4cff-af95-87804598b50b.png)
+
+## 4. Container orcherstration with Kubernetes
+
+We first started by installing minikube. Then we created a `k8s` folder in which whe created a `deployment.yaml` file : 
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: chateex-service
+spec:
+  selector:
+    app: chateex
+  ports:
+  - protocol: "TCP"
+    name : http
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chateex-app
+spec:
+  selector:
+    matchLabels:
+      app: chateex
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: chateex
+    spec:
+      containers:
+      - name: chateex
+        image: docker.io/eliottelekkk/chateex:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000
+```
+
+With this folder created, we can apply it with `kubectl apply -f deployment.yaml` :
+
+![image](https://user-images.githubusercontent.com/64375473/147014349-f9fe92bd-ffa5-415d-a03d-8a4dcf8b027d.png)
+
+(Should say service created and deployement created when running this command for the first time.)
+
+This is what we get when we type the command `kubectl get services` :
+
+![image](https://user-images.githubusercontent.com/64375473/147014534-939ebb66-2bc6-4089-9af2-1a8ec8884c1b.png)
+
+This is what we get when we type the command `kubectl get deployments` :
+
+![image](https://user-images.githubusercontent.com/64375473/147014970-521c91e1-d263-49ba-96f4-478162802849.png)
+
+And when we try to list our pods with `kubectl get pods`, this is what we get : 
+
+![image](https://user-images.githubusercontent.com/64375473/147014584-b5a17977-9bb8-4a5b-818e-57333fe4395d.png)
+
+We can see our 5 replicas running. 
