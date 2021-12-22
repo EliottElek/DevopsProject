@@ -143,7 +143,11 @@ services:
 
 To run, place yourself in the `/image` folder and run `docker-compose up` : 
 
-![image](https://user-images.githubusercontent.com/64375473/147011145-ffbd783e-ff90-4cff-af95-87804598b50b.png)
+![image](https://user-images.githubusercontent.com/64375473/147087032-b9092e58-f8ff-4c2e-9f39-a74526dc3f80.png)
+
+And we can see that our app is running using docker-compose : 
+
+![image](https://user-images.githubusercontent.com/64375473/147087144-12e600ce-53a3-491e-8215-bc792f0093cd.png)
 
 ## 4. Container orcherstration with Kubernetes
 
