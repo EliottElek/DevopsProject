@@ -36,9 +36,9 @@ io.on("connection", (socket) => {
   });
 });
 const config = {
-  port: 3001,
+  port: 8080,
 };
 
 server.listen(config.port, () => {
-  console.log(`Server is running on the port you specified !! ✅`);
+  console.log(`Server is running on http://localhost/${config.port} !! ✅`);
 });
