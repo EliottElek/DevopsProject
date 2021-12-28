@@ -50,7 +50,7 @@ describe("messages", () => {
       channelId: channel.id,
       content: "New message !",
       author: "dzed3a217e-ac0d-4e16-836c-79458fef23ddsddcx",
-      creation: new Date().toString(),
+      creation: "today",
     });
     // Get messages
     const { body: messages } = await supertest(app)
@@ -62,7 +62,7 @@ describe("messages", () => {
         channelId: channel.id,
         content: "New message !",
         author: "dzed3a217e-ac0d-4e16-836c-79458fef23ddsddcx",
-        creation: new Date().toString(),
+        creation: "today",
       },
     ]);
   });
@@ -90,7 +90,7 @@ describe("messages", () => {
         channelId: channel.id,
         content: "New message !",
         author: "dzed3a217e-ac0d-4e16-836c-79458fef23ddsddcx",
-        creation: new Date().toString(),
+        creation: "today",
       })
       .expect(201);
     message.should.match({
@@ -98,7 +98,7 @@ describe("messages", () => {
       channelId: channel.id,
       content: "New message !",
       author: "dzed3a217e-ac0d-4e16-836c-79458fef23ddsddcx",
-      creation: new Date().toString(),
+      creation: "today",
     });
     // Check it was correctly inserted
     const { body: messages } = await supertest(app).get(
@@ -129,7 +129,7 @@ describe("messages", () => {
         channelId: channel.id,
         content: "New message !",
         author: "dzed3a217e-ac0d-4e16-836c-79458fef23ddsddcx",
-        creation: new Date().toString(),
+        creation: "today",
       })
       .expect(201);
     message.should.match({
@@ -137,7 +137,7 @@ describe("messages", () => {
       channelId: channel.id,
       content: "New message !",
       author: "dzed3a217e-ac0d-4e16-836c-79458fef23ddsddcx",
-      creation: new Date().toString(),
+      creation: "today",
     });
     // Check it was correctly inserted
     const { body: messages } = await supertest(app).get(
@@ -153,7 +153,7 @@ describe("messages", () => {
       id: "dzed3a217e-ac0d-4e16-836c-79458fef23dd",
       author: "dzed3a217e-ac0d-4e16-836c-79458fef23ddsddcx",
       content: "This message was deleted by the sender.",
-      creation: new Date().toString(),
+      creation: "today",
       channelId: "dd3asddsq217e-ac0d-4e16-836c-79458fef23dd",
       deleted: true,
       reaction: null,
@@ -183,7 +183,7 @@ describe("messages", () => {
         channelId: channel.id,
         content: "New message !",
         author: "dzed3a217e-ac0d-4e16-836c-79458fef23ddsddcx",
-        creation: new Date().toString(),
+        creation: "today",
       })
       .expect(201);
     message.should.match({
@@ -191,7 +191,7 @@ describe("messages", () => {
       channelId: channel.id,
       content: "New message !",
       author: "dzed3a217e-ac0d-4e16-836c-79458fef23ddsddcx",
-      creation: new Date().toString(),
+      creation: "today",
     });
     // Check it was correctly inserted
     const { body: messages } = await supertest(app).get(
@@ -209,7 +209,7 @@ describe("messages", () => {
       id: "dzed3a217e-ac0d-4e16-836c-79458fef23dd",
       author: "dzed3a217e-ac0d-4e16-836c-79458fef23ddsddcx",
       content: "New message modified !",
-      creation: new Date().toString(),
+      creation: "today",
       channelId: "dd3asddsq217e-ac0d-4e16-836c-79458fef23dd",
       modified: true,
     });
@@ -237,7 +237,7 @@ describe("messages", () => {
         channelId: channel.id,
         content: "New message !",
         author: "dzed3a217e-ac0d-4e16-836c-79458fef23ddsddcx",
-        creation: new Date().toString(),
+        creation: "today",
       })
       .expect(201);
     message.should.match({
@@ -245,7 +245,7 @@ describe("messages", () => {
       channelId: channel.id,
       content: "New message !",
       author: "dzed3a217e-ac0d-4e16-836c-79458fef23ddsddcx",
-      creation: new Date().toString(),
+      creation: "today",
     });
     // Check it was correctly inserted
     const { body: messages } = await supertest(app).get(
@@ -263,7 +263,7 @@ describe("messages", () => {
       id: "dzed3a217e-ac0d-4e16-836c-79458fef23dd",
       author: "dzed3a217e-ac0d-4e16-836c-79458fef23ddsddcx",
       content: "New message !",
-      creation: new Date().toString(),
+      creation: "today",
       channelId: "dd3asddsq217e-ac0d-4e16-836c-79458fef23dd",
       modified: false,
       reactions: ["✅", "😇"],
