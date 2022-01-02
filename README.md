@@ -216,3 +216,14 @@ If we change the number of replicas from 5 to 15 and re-apply changes with `kube
 ![image](https://user-images.githubusercontent.com/64375473/147068943-0fe7db01-c30f-4aba-8fb8-ce7bda35edfb.png)
 
 We can see our 15 replicas running. 
+We first tried to install Istio with `istioctl` but we only succeeded in installing the `minimal` profile. `Default` or `demo` were not working. But with this installation profile, there was missing the ingress and egress gateway and we needed the ingress gateway to start the routing request configuration. So we tried with an another technique which appeared to be the <a href = "https://istio.io/latest/docs/setup/install/operator/" >Istio Operator Install</a>. Thank to this installation, we managed to follow the tutorial to configure the request routing and we had results : 
+
+![image](https://user-images.githubusercontent.com/60350297/147132191-1d280a8b-76ca-4fd9-bce0-71c77924ae02.png)
+
+But we didn't succeed to configure it for our application.
+
+## 8. Implement Monitoring to your containerized application
+
+We were not able to download prometheus because they do not provide a MacOS version.
+
+![image](https://user-images.githubusercontent.com/60350297/147130707-af2499f3-5c7b-434e-bf1e-09c0c2062ae8.png)
